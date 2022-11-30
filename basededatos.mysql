@@ -1,0 +1,35 @@
+create table ventas(
+    num_venta int unsigned auto_increment, 
+   nombre_producto varchar(30),
+   cant_producto int unsigned,
+   total_venta int unsigned,
+   primary key (num_venta)
+);
+create table proveedores  (
+    id_proveedor int unsigned auto_increment,
+    nombre_proveedor varchar(50),
+    telefono int unsigned,
+    nombre_producto varchar(30), 
+    primary key (id_proveedor)
+);
+
+create table productos (
+    id_producto int unsigned auto_increment,
+    nombre_producto varchar(30),
+    fecha_vencimiento date,
+    precio int unsigned,
+    id_proveedor int unsigned,
+    primary key (id_producto),
+    constraint condicionFK
+    foreign key (id_proveedor) references proveedores(id_proveedor)
+);
+
+create table genera (
+    num_venta int unsigned, 
+    id_producto int unsigned,
+    foreign key (num_venta) references ventas(num_venta),
+    foreign key (id_producto) references productos(id_producto)
+
+);
+
+ 
